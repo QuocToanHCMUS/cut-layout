@@ -1,0 +1,20 @@
+
+.model_hide_show{
+    position: fixed;
+    background: #fff;
+    z-index: 999;
+    width: 40%;
+    left: 30%;
+    top: 60px;
+  }
+  
+  .model_hide_show.inactive {
+    visibility: hidden!important;
+  }
+  
+  .btn_close_model {
+    content: "x";
+    position: absolute;
+    top: 5px;
+    right: 9px;
+  }  

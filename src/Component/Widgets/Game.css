@@ -1,0 +1,22 @@
+#main{
+    width: 500px;
+    height: 720px;
+    background-color: gray;
+    margin: 0 auto;
+}
+#duong_dua{
+    margin: 0 auto;
+    width: 400px;
+    display: flex;
+}
+.line_1,.line_2,.line_3,.line_4
+{
+    width: 100px;
+    height: 500px;
+    border: 1px solid red ;
+}
+#xe_1,#xe_2,#xe_3,#xe_4{
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+}

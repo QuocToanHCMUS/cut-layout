@@ -1,0 +1,51 @@
+.image_logo{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    z-index: 1000;
+    top: 30px;
+    right: 0px;
+    padding: 20px;
+    box-sizing: content-box;
+    background-color: white;
+    border: 1px solid black;
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+}
+.image_logo img{
+    width: 100%;
+}
+.btn_add_cart {
+    position: absolute;
+    bottom: 20px;
+    z-index: 10;
+    background-color: #f00;
+    color: #fff;
+    font-weight: bold;
+    left: 20px;
+    padding: 10px;
+  }
+
+/* 
+  .list_item_cart {
+    position: fixed;
+    right: 100px;
+    top: 30px;
+    background:
+    #fff;
+    border: 1px solid
+    I#ccc;
+    z-index: 9;
+    padding: 10px;
+    }
+    .item_cart_in_list {
+    display: flex;
+    }
+    .hinh_san_pham {
+    width: 70px;
+    margin: 0 10px e e;
+    }
+    .hinh_san pham img {
+    width: 100%;
+    }
+     */

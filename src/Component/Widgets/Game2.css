@@ -1,0 +1,35 @@
+#main{
+    width: 500px;
+    height: 720px;
+    background-color: gray;
+    margin: 0 auto;
+}
+#duong_dua{
+    margin: 0 auto;
+    width: 400px;
+}
+
+#xe{
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+}
+#xe_1{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+#xe_dua{
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    /* position: relative; */
+    /* top: 500px;
+    right: 718px; */
+}
+
+#btn{
+    position: relative;
+    top: 600px;
+    right: 740px;
+}
