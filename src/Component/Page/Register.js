@@ -7,9 +7,9 @@ class Register extends Component {
     render() {
         return (
             <div>
-                <Header/>
+                {/* <Header/> */}
                 <RegisterForm/>
-                <Footer/>
+                {/* <Footer/> */}
                 
                 
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import {NavLink,Link} from "react-router-dom";
 class TopBanner extends Component {
     constructor(props){
         super(props);
@@ -92,12 +93,9 @@ class TopBanner extends Component {
                                         <div className="top-menu">
                                             <span className="menu"></span>
                                                 <ul className="nav1">
-                                                    <li className="active"><a href="index.html">Home</a></li>
-                                                    <li><a href="about.html">About</a></li>
-                                                    <li><a href="reviews.html">Reviews</a></li>
-                                                    <li><a href="typo.html">News</a></li>
-                                                    <li><a href="gallery.html">Gallery</a></li>
-                                                    <li><a href="contact.html">Mail</a></li>
+                                                    <li><NavLink className = {({ isActive }) => {return (isActive)?'active':'inactive'}} to="/">Home</NavLink></li>
+                                                    <li><NavLink className = {({ isActive }) => {return (isActive)?'active':'inactive'}} to="/register">Register</NavLink></li>
+                                                    <li><NavLink className = {({ isActive }) => {return (isActive)?'active':'inactive'}} to="/game2">Game2</NavLink></li>
                                             </ul>
                                         </div>	
                                         

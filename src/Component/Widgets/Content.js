@@ -42,8 +42,39 @@ class Content extends Component {
                     price: 800000
                 }
             ],
-            mang_gio_hang: []
+            mang_gio_hang: [],
+            totalQuantity:0
         }
+    }
+    countTotalQuantity = () => {
+        let mang = this.state.mang_gio_hang;
+        let total = 0;
+        for(var i=0;i<mang.length;i++){
+            total += mang[i].quantity
+        }
+        this.setState(prevState=>{
+            prevState.totalQuantity = total;
+            return prevState
+        })
+    }
+
+
+    componentDidMount(){
+        let dataCart = localStorage.getItem('cart');
+        //console.log(dataCart);
+        if(dataCart && dataCart !=null && dataCart !='undefined'){
+            this.setState(prevState =>{
+                prevState.mang_gio_hang = JSON.parse(dataCart);
+                return prevState;
+            },()=>{
+                this.countTotalQuantity()
+            })
+        }
+        
+    }
+    updateLocalStore = (mang) =>{
+        let dataCart = JSON.stringify(mang);
+        localStorage.setItem('cart',dataCart);
     }
 
     addToCart = (item) => {
@@ -52,11 +83,13 @@ class Content extends Component {
             let co_kt = 0
             for(var i=0;i<mang.length;i++){
                 if(mang[i].id == item.id){
-                    item.quantity +=1
+                    mang[i].quantity +=1
                     mang[i]= item
                     this.setState(prevState =>{
                         prevState.mang_gio_hang = mang;
                         return prevState
+                    },()=>{
+                        this.countTotalQuantity()
                     })
                     co_kt = 1
                 }
@@ -67,6 +100,8 @@ class Content extends Component {
                 this.setState(prevState => {
                     prevState.mang_gio_hang = mang;
                     return prevState;
+                },()=>{
+                    this.countTotalQuantity()
                 });
             }
         }
@@ -76,8 +111,11 @@ class Content extends Component {
             this.setState(prevState => {
                 prevState.mang_gio_hang = mang;
                 return prevState;
+            },()=>{
+                this.countTotalQuantity()
             });
         }
+        this.updateLocalStore(mang);
     }
 
     cutProduct = async (item) =>{
@@ -96,25 +134,29 @@ class Content extends Component {
                     }
                 }
                 else{
-                    item.quantity -=1
+                    mang[i].quantity -=1
                     mang[i]= item
                 }
                 this.setState(prevState =>{
                     prevState.mang_gio_hang = mang;
                     return prevState
+                },()=>{
+                    this.countTotalQuantity()
                 })
             }
         }
+        this.updateLocalStore(mang);
 
     }
     deleteProduct = async (item) =>{
         // let mang = this.state.mang_gio_hang;
         // for(var i=0;i<mang.length;i++){
         //     if(mang[i].id == item.id){
+            let mang = this.state.mang_gio_hang;
                 const result = await confirm("Are you sure?");
                 if (result) {
                     console.log("You click yes!");
-                    let mang = this.state.mang_gio_hang;
+                    
                     for(var i=0;i<mang.length;i++){
                         if(mang[i].id == item.id){
                             mang.splice(i,1)
@@ -125,6 +167,8 @@ class Content extends Component {
                             this.setState(prevState =>{
                                 prevState.mang_gio_hang = mang;
                                 return prevState
+                            },()=>{
+                                this.countTotalQuantity()
                             })
                     //return;
                         }
@@ -141,6 +185,7 @@ class Content extends Component {
                 // })
             }
         }
+        this.updateLocalStore(mang);
 
     }
     render() {
@@ -148,11 +193,11 @@ class Content extends Component {
             <div>
                 
                 <ListGame handleAddToCart={this.addToCart} danhSachGame={this.state.danhSachGame}/>
-                <CartPage CartItems={this.state.mang_gio_hang} handleDelteProduct={this.deleteProduct} handleCutProduct={this.cutProduct}  handleAddToCart={this.addToCart} />
+                <CartPage CartItems={this.state.mang_gio_hang} handleDelteProduct={this.deleteProduct} handleCutProduct={this.cutProduct}  handleAddToCart={this.addToCart} handleUpdateQuantityItemCart={this.UpdateQuantityItemCart}/>
                 <Lastest />
                 <Poster />
                 <XBox />
-                <Cart CartItems={this.state.mang_gio_hang}/>
+                <Cart CartItems={this.state.mang_gio_hang} totalQuantity={this.state.totalQuantity}/>
                 
             </div>
         );
